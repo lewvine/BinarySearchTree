@@ -16,8 +16,16 @@ namespace BinarySearchTree_Project
             //adding of a new node(with data) to the binary search tree data structure.
             //(5 points) As a developer, I want to create a ‘Search()’ method in my BinarySearchTree class to allow the
             //ability to search for a specific value within the binary search tree data structure.
+            BinarySearchTree tree = new BinarySearchTree();
+            Node node1 = new Node(10);
+            Node node2 = new Node(5);
+            Node node3 = new Node(12);
 
+            tree.Add(node1);
+            tree.Add(node2);
+            tree.Add(node3);
 
+            tree.Search(12);
 
         }
     }

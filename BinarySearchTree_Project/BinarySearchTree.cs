@@ -9,12 +9,15 @@ namespace BinarySearchTree_Project
     public class BinarySearchTree
     {
         public Node ParentNode;
+        public int totalNodes;
         public void Add(Node nodeToAdd)
         {
             //If the search tree is empty, ParentMode will be null and the nodeToAdd will be added as the first node.
             if(ParentNode == null)
             {
                 ParentNode = nodeToAdd;
+                ParentNode.count++;
+                totalNodes++;
             }
             else
             {
@@ -40,6 +43,8 @@ namespace BinarySearchTree_Project
                             currentNode = currentNode.childMore;
                         }
                     }
+                    totalNodes++;
+
                 }
                 //Now we're branching down the childLess tree.
                 else if (nodeToAdd.data < currentNode.data)
@@ -61,6 +66,7 @@ namespace BinarySearchTree_Project
                             currentNode = currentNode.childLess;
                         }
                     }
+                    totalNodes++;
                 }
                 //If nodeToAdd and currentNode are equal in value, increment currentNode.count.
                 else
@@ -70,19 +76,23 @@ namespace BinarySearchTree_Project
             }
         }
 
-        public bool Search(Node lookingForThis)
+        public bool Search(int data)
         {
             Node currentNode = ParentNode;
+            if(currentNode == null)
+            {
+                return false;
+            }
             while (true)
             {
-                int answer = currentNode.data.CompareTo(lookingForThis.data);
+                int answer = currentNode.data.CompareTo(data);
                 //CurrentNode is same as lookingForThis.
                 if (answer == 0)
                 {
                     return true;
                 }
                 //CurrentNode is < as lookingForThis.
-                if (answer == -1)
+                if (answer == 1)
                 {
                     if (currentNode.childLess != null)
                     {
@@ -94,7 +104,7 @@ namespace BinarySearchTree_Project
                      }
 
                 }
-                else if (answer == 1)
+                else if (answer == -1)
                 {
                     if(currentNode.childMore != null)
                     {

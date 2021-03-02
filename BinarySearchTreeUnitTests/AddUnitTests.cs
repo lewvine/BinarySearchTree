@@ -5,7 +5,7 @@ using BinarySearchTree_Project;
 namespace BinarySearchTreeUnitTests
 {
     [TestClass]
-    public class BinarySearchTests
+    public class AddUnitTests
     {
         [TestMethod]
         public void Add_To_Empty_Tree_Expect_Node1_To_Be_Parent_Node()
@@ -25,6 +25,52 @@ namespace BinarySearchTreeUnitTests
 
             //Act
             actual = tree.ParentNode.data;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Add_Three_Nodes_Expect_TotalNodes_To_Be_3()
+        {
+            //Arrange
+            BinarySearchTree tree = new BinarySearchTree();
+            Node node1 = new Node(10);
+            Node node2 = new Node(8);
+            Node node3 = new Node(12);
+
+            tree.Add(node1);
+            tree.Add(node2);
+            tree.Add(node3);
+
+            int actual;
+            int expected = 3;
+
+            //Act
+            actual = tree.totalNodes;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Add_Three_Same_Nodes_Expect_TotalNodes_To_Be_1()
+        {
+            //Arrange
+            BinarySearchTree tree = new BinarySearchTree();
+            Node node1 = new Node(10);
+            Node node2 = new Node(10);
+            Node node3 = new Node(10);
+
+            tree.Add(node1);
+            tree.Add(node2);
+            tree.Add(node3);
+
+            int actual;
+            int expected = 1;
+
+            //Act
+            actual = tree.totalNodes;
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -102,6 +148,39 @@ namespace BinarySearchTreeUnitTests
             //Assert
             Assert.AreEqual(expected, actual);
             Assert.AreEqual(expected2, actual2);
+        }
+
+        [TestMethod]
+        public void Add_Expect_10Count_ToBe_3()
+        {
+            //Arrange
+            BinarySearchTree tree = new BinarySearchTree();
+            Node node1 = new Node(10);
+            Node node2 = new Node(5);
+            Node node3 = new Node(20);
+            Node node4 = new Node(22);
+            Node node5 = new Node(10);
+            Node node6 = new Node(10);
+
+
+            tree.Add(node1);
+            tree.Add(node2);
+            tree.Add(node3);
+            tree.Add(node4);
+            tree.Add(node5);
+            tree.Add(node6);
+
+            int actual;
+            int expected = 3;
+            int actual2;
+            int expected2 = 1;
+
+            //Act
+            actual = tree.ParentNode.count;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+
         }
     }
 }
