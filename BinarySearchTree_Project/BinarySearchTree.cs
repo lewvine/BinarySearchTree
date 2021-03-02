@@ -31,6 +31,7 @@ namespace BinarySearchTree_Project
                             //Assign nodeToAdd as this node's childMore.
                             //Break out of the while look once nodeToAdd has found a home.
                             currentNode.childMore = nodeToAdd;
+                            nodeToAdd.count++;
                             break;
                         }
                         else
@@ -51,6 +52,7 @@ namespace BinarySearchTree_Project
                             //Assign nodeToAdd as this node's childLess.
                             //Break out of the while loop once nodeToAdd has found a home.
                             currentNode.childLess = nodeToAdd;
+                            nodeToAdd.count++;
                             break;
                         }
                         else
@@ -60,12 +62,50 @@ namespace BinarySearchTree_Project
                         }
                     }
                 }
+                //If nodeToAdd and currentNode are equal in value, increment currentNode.count.
+                else
+                {
+                    currentNode.count++;
+                }
             }
         }
 
-        public void Search()
+        public bool Search(Node lookingForThis)
         {
-            //returns a specific value.
+            Node currentNode = ParentNode;
+            while (true)
+            {
+                int answer = currentNode.data.CompareTo(lookingForThis.data);
+                //CurrentNode is same as lookingForThis.
+                if (answer == 0)
+                {
+                    return true;
+                }
+                //CurrentNode is < as lookingForThis.
+                if (answer == -1)
+                {
+                    if (currentNode.childLess != null)
+                    {
+                        currentNode = currentNode.childLess;
+                    }
+                    else
+                    {
+                        return false;
+                     }
+
+                }
+                else if (answer == 1)
+                {
+                    if(currentNode.childMore != null)
+                    {
+                        currentNode = currentNode.childMore;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
         }
     }
 }
