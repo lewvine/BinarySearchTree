@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BinarySearchTree_Project
 {
-    class BinarySearchTree
+    public class BinarySearchTree
     {
         public Node ParentNode;
         public void Add(Node nodeToAdd)
